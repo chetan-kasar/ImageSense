@@ -23,7 +23,7 @@ const App = () => {
     console.log(formData.get("image"));
 
     try{
-       await axios.post("http://localhost:5000/home", formData).then(response=>{setOutput(response.data.message); setLoding(false)});
+       await axios.post("https://image-sense-server.vercel.app/", formData).then(response=>{setOutput(response.data.message); setLoding(false)});
     }
     catch(error){
       console.log("Request error");
