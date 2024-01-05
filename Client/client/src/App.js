@@ -4,6 +4,7 @@ import Loading from './Components/Loading';
 const App = () => {
   const [output, setOutput] = useState("");
   const [loding, setLoding] = useState(false);
+  const [prompt, setPrompt] = useState("");
   const [dispImage, setDispImage] = useState();
   const [image, setImage] = useState("");
 
@@ -20,7 +21,7 @@ const App = () => {
     setLoding(true);
     const formData = new FormData();
     formData.append("image", image);
-    console.log(formData.get("image"));
+    formData.append("prompt", prompt);
 
     try{
        await axios.post("https://image-sense-server.vercel.app/", formData).then(response=>{setOutput(response.data.message); setLoding(false)});
@@ -44,7 +45,9 @@ const App = () => {
       <h1>ImageSense</h1>
       <div className="input-window">
         <img src={dispImage} height={100} width={100} className='img'/>
-
+    
+        <input text="text" placeholder='Message ImageSense......' onChange={(e)=>{setPrompt(e.target.value)}} className='prompt'/>
+        
         <div className="file-input ">
           <input type="file" accept="image/*" onChange={imageSelected} id="file" className="file" style={inputStyle}/>
           <label for="file">
