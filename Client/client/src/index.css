@@ -33,6 +33,12 @@ h1 {
   font-size:25px;
 }
 
+.error-txt{
+  color: red;
+  font-family: "Bree Serif";
+  font-size:25px;
+}
+
 .loading{
   font-family: "Oswald";
   font-size: 20px;
