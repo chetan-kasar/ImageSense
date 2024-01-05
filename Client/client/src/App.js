@@ -4,6 +4,7 @@ import Loading from './Components/Loading';
 const App = () => {
   const [output, setOutput] = useState("");
   const [loding, setLoding] = useState(false);
+  const [error, setError] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [dispImage, setDispImage] = useState();
   const [image, setImage] = useState("");
@@ -27,7 +28,8 @@ const App = () => {
        await axios.post("https://image-sense-server.vercel.app/", formData).then(response=>{setOutput(response.data.message); setLoding(false)});
     }
     catch(error){
-      console.log("Request error");
+      setLoding(false)
+      setError(true);
     }
   }
 
@@ -62,6 +64,7 @@ const App = () => {
       <div class="output">
         <p class="output-heading">Output : </p>
         <p class="output-txt">{loding? <Loading/>: output}</p>
+        <p className="error-txt">{error? "Server is Busy Now :( Please Try Again":""}</p>
       </div>
 
     </div>
