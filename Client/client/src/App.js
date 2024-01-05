@@ -20,6 +20,7 @@ const App = () => {
   const handleClick = async ()=>{
     setOutput("");
     setLoding(true);
+    setError(false);
     const formData = new FormData();
     formData.append("image", image);
     formData.append("prompt", prompt);
